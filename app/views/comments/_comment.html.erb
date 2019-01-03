@@ -1,10 +1,8 @@
+<div class="d-flex w-100 justify-content-between">
+  <h6><strong><%= comment.commenter %></strong></h6>
+  <p class="blog-post-meta update_font"><%= comment.updated_at.strftime('%Y/%m/%d') %></p> 
+</div>
 <p>
-  <strong>Commenter:</strong>
-  <%= comment.commenter %>
-</p>
-
-<p>
-  <strong>Comment:</strong>
   <%= comment.body %>
 </p>
 

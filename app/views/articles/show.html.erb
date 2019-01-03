@@ -1,17 +1,20 @@
-<p>
-  <strong>Title:</strong>
-  <%= @article.title %>
-</p>
- 
-<p>
-  <strong>body:</strong>
-  <%= @article.body %>
-</p>
+<div class="article">
+  <div class="d-flex w-100 justify-content-between article_title">
+    <h3><strong><%= @article.title %></strong></h3>
+    <p class="blog-post-meta update_font"><%= @article.updated_at.strftime('%Y/%m/%d') %></p> 
+  </div>
+  <p><%= @article.body %></p>
+</div>
 
-<h2>Comments</h2>
+<hr>
+
+<h5>Comments</h5>
 <%= render @article.comments %>
 
-<h2>Add a comment:</h2>
+<h5>Add a comment:</h5>
 <%= render 'comments/form' %>
 
 <%= link_to 'index', articles_path %>
+
+<%= link_to 'Edit', edit_article_path(@article) %>
+<%= link_to 'delete', article_path(@article), method: :delete, data: { confirm: 'Are you sure?' } %>
