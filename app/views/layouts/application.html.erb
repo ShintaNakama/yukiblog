@@ -7,9 +7,98 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container">
+      <header class="blog-header py-3">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <%= link_to "yukiblog", articles_path, class: 'navbar-brand' %>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">login <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'new', new_article_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Dropdown
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+              </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+          </div>
+        </nav>
+      </header>
+      <h2 style="text-align:center">Yukiblog</h2>
+      <main role="main" class="container">
+        <div class="row">
+          <div class="col-md-8 blog-main">
+            <%= yield %>
+          </div><!-- /.blog-main -->
+
+          <aside class="col-md-4 blog-sidebar">
+            <div class="p-3 mb-3 bg-light rounded">
+              <h4 class="font-italic">Profile</h4>
+              <h6>Yukiboo</h6>
+              <p class="mb-0" style="font-size:0.8em">まだ経験浅めのエンジニアです。学習したことのアウトプットと子育てのことなどをアップしていきたいと思ってます。沖縄出身、2児のパパ。</p>
+            </div>
+
+            <div class="p-3">
+              <h4 class="font-italic">Archives</h4>
+              <ol class="list-unstyled mb-0">
+                <% @archive_links.each do |link| %>
+                <li><%= link_to "#{link[0][0..3]} / #{link[0][4..-1]} (#{link[1]})", archive_articles_path(date: link[0]) %></li>
+                <% end %>
+              </ol>
+            </div>
+          </aside><!-- /.blog-sidebar -->
+        </div><!-- /.row -->
+      </main><!-- /.container -->
+      <footer class="blog-footer bg-light">
+        <div id="footer-menu" style="text-align:center">
+          <div id="blog-title-content">
+            <%= link_to 'yukiblog', articles_path %>
+          </div>
+          <nav>
+            <div class="footer-links">
+          　　 <p class="copyright">© 2019 yukiblog All rights reserved.</p>
+              <p>
+                <a href="#">Back to top</a>
+              </p>
+            </div>
+    　　　 </nav>
+        </div>
+      </footer>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
   </body>
 </html>
