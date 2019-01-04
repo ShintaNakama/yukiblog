@@ -10,17 +10,17 @@
     </ul>
   </div>
   <% end %>
-  <p>
+  <div class='form-group'>
     <%= form.label :title %><br>
-    <%= form.text_field :title, size: "30" %>
-  </p
+    <%= form.text_field :title, class: 'form-control' %>
+  </div>
  
-  <p>
+  <div class='form-group'>
     <%= form.label :body %><br>
-    <%= form.text_area :body, style: 'width:400px;height:300px !important;' %>
-  </p>
+    <%= form.text_area :body, class: 'form-control', rows: '10' %>
+  </div>
  
-  <p>
-    <%= form.submit %>
-  </p>
+  <nav class="blog-pagination">
+    <%= form.submit(class: "btn btn-outline-secondary") %>
+  </nav>
 <% end %>

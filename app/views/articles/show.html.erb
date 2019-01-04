@@ -1,9 +1,9 @@
 <div class="article">
+  <p class="blog-post-meta update_font"><%= @article.updated_at.strftime('%Y/%m/%d') %></p> 
   <div class="d-flex w-100 justify-content-between article_title">
     <h3><strong><%= @article.title %></strong></h3>
-    <p class="blog-post-meta update_font"><%= @article.updated_at.strftime('%Y/%m/%d') %></p> 
   </div>
-  <p><%= @article.body %></p>
+  <p><%= @article.body.html_safe %></p>
 </div>
 
 <hr>
