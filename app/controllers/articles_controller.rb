@@ -13,11 +13,11 @@ class ArticlesController < ApplicationController
   def search
   end
 
-  def sho
+  def show
     @article = Article.find(params[:id])
   end
 
-  def ne
+  def new
     @article = Article.new
   end
 
