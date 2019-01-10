@@ -12,10 +12,7 @@ services:
     command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
     command: mysqld --sql_mode=NO_ENGINE_SUBSTITUTION
   elasticsearch:
-    container_name: yukiblog-elasticsearch
-    build:
-      context: .
-      dockerfile: es.Dockerfile
+    build: .
     environment:
       - discovery.type=single-node
       - xpack.security.enabled=false
@@ -23,25 +20,26 @@ services:
       - elasticsearch-data:/usr/share/elasticsearch/data
     ports:
       - 9200:9200
-      - 9300:9300
+    depends_on:
+      - mysql
+  kibana:
+    build: .
+    ports:
+      - 5601:5601
+    depends_on:
+      - elasticsearch
   web:
     tty: true
     stdin_open: true
-    build:
-      context: .
-      dockerfile: Dockerfile
-    environment:
-      ELASTICSEARCH_URL: http://elasticsearch:9200
+    build: .
     command: /bin/sh -c "rm -f /yukiblog/tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     depends_on:
-      - mysql
+      - kibana
     volumes:
       - .:/yukiblog
       - vendor_bundle:/yukiblog/vendor/bundle
     ports:
       - "3000:3000"
-    links:
-      - elasticsearch
 
 volumes:
   mysql_data:

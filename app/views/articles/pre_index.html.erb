@@ -1,0 +1,17 @@
+
+<%= form_with url: articles_path, method: :get, class: "form-inline my-2 my-lg-0"  do |form| %>
+  <%= text_field_tag :search, params[:search], value: (params[:search] if params[:search]), class: "form-control mr-sm-2", placeholder: "Search" %>
+  <%= submit_tag "Search", name: nil, class: "btn btn-outline-success my-2 my-sm-0" %>
+<% end %>
+<% @articles.each do |article| %>
+  <div class="list-group">
+    <%= link_to article_path(article), class: "list-group-item list-group-item-action" do %>
+      <p class="blog-post-meta update_font"><%= article.updated_at.strftime('%Y/%m/%d') %></p> 
+      <div class="d-flex w-100 justify-content-between article_title">
+        <h5 class="mb-1"><strong><%= article.title %></strong></h5>
+      </div>
+      <p class="mb-1"><%= article.body[0..50] %></p>
+    <% end %>
+  </div>
+  <br/>
+<% end %>
