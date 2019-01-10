@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  before_action :set_article, only: [:show, :edit, :update, :destroy]
+
   def index
     @articles = Article.all.reverse
   end
@@ -11,10 +13,16 @@ class ArticlesController < ApplicationController
   end
 
   def search
+    if params[:search].present?
+      @articles = Article.search(params[:search]).results
+    else
+      @articles = Article.all.reverse
+    end
+    # p @articles[0].updated_at
+    # raise
   end
 
   def show
-    @article = Article.find(params[:id])
   end
 
   def new
@@ -23,35 +31,45 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    if @article.save
-      redirect_to @article
-    else
-      render 'new'
+    respond_to do |format|
+      if @article.save
+        format.html { redirect_to @article, notice: 'Article was successfully created.' }
+        format.json { render :show, status: :created, location: @article }
+      else
+        format.html { render :new }
+        format.json { render json: @article.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   def edit
-    @article = Article.find(params[:id])
   end
 
   def update
-    @article = Article.find(params[:id])
-
-    if @article.update(article_params)
-      redirect_to @article
-    else
-      render 'edit'
+    respond_to do |format|
+      if @article.update(article_params)
+        format.html { redirect_to @article, notice: 'Article was successfully updated.' }
+        format.json { render :show, status: :ok, location: @article }
+      else
+        format.html { render :edit }
+        format.json { render json: @article.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   def destroy
-    @article = Article.find(params[:id])
     @article.destroy
-
-    redirect_to articles_path
+    respond_to do |format|
+      format.html { redirect_to articles_url, notice: 'Article was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
   private
+    def set_article
+      @article = Article.find(params[:id])
+    end
+
     def article_params
       params.require(:article).permit(:title, :body)
     end
