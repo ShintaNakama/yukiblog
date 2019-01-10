@@ -24,6 +24,15 @@ services:
     ports:
       - 9200:9200
       - 9300:9300
+  kibana:
+    container_name: yukiblog-kibana
+    build:
+      context: .
+      dockerfile: es.Dockerfile
+    environment:
+      - xpack.security.enabled=false
+    ports:
+      - 5601:5601
   web:
     tty: true
     stdin_open: true
