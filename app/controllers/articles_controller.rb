@@ -1,13 +1,15 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
+    PER = 3
   def index
-    @articles = Article.all.reverse
+    # @articles = Article.all.reverse
+    @articles = Article.order('id DESC').page(params[:page]).per(PER)
   end
 
   def archive
     year = params[:date][0..3].to_i
-    month = params[:date][4..-1].to_i
+    month = params[:date][4..-1].to_
     date = Date.new(year, month, 1)
     @articles = Article.where(updated_at: date..((date >> 1) -1)).reverse
   end
