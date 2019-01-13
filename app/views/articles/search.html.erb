@@ -1,0 +1,13 @@
+<% @articles.each.with_index do |article, i| %>
+  <div class="list-group">
+    <%= link_to article_path(@articles[i].id), class: "list-group-item list-group-item-action" do %>
+      <p class="blog-post-meta update_font"><%= @articles[i].updated_at.to_date.strftime('%Y/%m/%d') %></p> 
+      <div class="d-flex w-100 justify-content-between article_title">
+        <h5 class="mb-1"><strong><%= @articles[i].title %></strong></h5>
+      </div>
+      <p class="mb-1"><%= @articles[i].body[0..50] %></p>
+    <% end %>
+  </div>
+  <br/>
+<% end %>
+

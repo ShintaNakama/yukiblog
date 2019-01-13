@@ -38,6 +38,15 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # kaminari bootstrap
 gem 'kaminari-bootstrap', '~> 3.0.1'
 
+# Elasticsearch
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
+
+# configure on yml file
+gem 'config'                              # 定数管理
+gem 'dotenv-rails'                        # 環境変数管理
+gem 'dotenv-deployment'                   # Production, Stating環境での環境変数設定
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
