@@ -51,5 +51,6 @@ test:
 production:
   <<: *default
   database: yukiblog_production
-  username: yukiblog
+  #username: yukiblog
+  username: root
   password: <%= ENV['YUKIBLOG_DATABASE_PASSWORD'] %>
