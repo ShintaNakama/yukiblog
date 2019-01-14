@@ -54,3 +54,4 @@ production:
   #username: yukiblog
   username: root
   password: <%= ENV['YUKIBLOG_DATABASE_PASSWORD'] %>
+  host: 'yukiblogmysqldb.cwdi1rve53lh.ap-northeast-1.rds.amazonaws.com'
