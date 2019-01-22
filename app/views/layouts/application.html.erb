@@ -58,6 +58,9 @@
       <main role="main" class="container">
         <div class="row">
           <div class="col-md-8 blog-main">
+            <% if flash[:notice] %>
+              <p><%= flash[:notice] %></p>
+            <% end %>
             <%= yield %>
           </div><!-- /.blog-main -->
 

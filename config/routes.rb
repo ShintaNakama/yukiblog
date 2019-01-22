@@ -11,6 +11,6 @@ Rails.application.routes.draw do
     end
   end
   get 'confirm_authority', to: 'authentication#confirm_authority'
-  get 'confirm_authority_callback', to: 'authentication#confirm_authority_callback'
+  post 'confirm_authority_callback', to: 'authentication#confirm_authority_callback'
   # root  'articles#index'
 end
