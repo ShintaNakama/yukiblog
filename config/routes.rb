@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   end
   get 'confirm_authority', to: 'authentication#confirm_authority'
   post 'confirm_authority_callback', to: 'authentication#confirm_authority_callback'
+  get 'logout', to: 'authentication#logout'
   # root  'articles#index'
 end
