@@ -1,7 +1,8 @@
 class ArticlesController < ApplicationController
+  before_action :confirm_admin_session, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
-    PER = 3
+    PER = 5
   def index
     # @articles = Article.all.reverse
     @articles = Article.order('id DESC').page(params[:page]).per(PER)
@@ -9,9 +10,9 @@ class ArticlesController < ApplicationController
 
   def archive
     year = params[:date][0..3].to_i
-    month = params[:date][4..-1].to_
+    month = params[:date][4..-1].to_i
     date = Date.new(year, month, 1)
-    @articles = Article.where(updated_at: date..((date >> 1) -1)).reverse
+    @articles = Article.where(updated_at: date..((date >> 1) -1)).order('id DESC').page(params[:page]).per(PER)
   end
 
   def search
@@ -79,4 +80,14 @@ class ArticlesController < ApplicationController
     def archive_date_params
       params.permit(:date)
     end
+
+    def confirm_admin_session
+      # session[:admin].present? ? true : confirm_permission
+      if session[:admin].present?
+        true
+      else
+        redirect_to confirm_authority_path
+      end
+    end
+
 end
