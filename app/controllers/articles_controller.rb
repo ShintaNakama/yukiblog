@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
-  before_action :confirm_admin_session, only: [:new, :create, :edit, :update, :destroy]
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :confirm_admin_session, only: [:new, :create, :edit, :update, :destroy, :images_destroy]
+  before_action :set_article, only: [:show, :edit, :update, :destroy, :images_destroy]
 
     PER = 5
   def index
@@ -68,13 +68,21 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def images_destroy
+    @article.images.destroy_all
+    respond_to do |format|
+      format.html { redirect_to articles_url, notice: 'Article_images was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
   private
     def set_article
       @article = Article.find(params[:id])
     end
 
     def article_params
-      params.require(:article).permit(:title, :body)
+      params.require(:article).permit(:title, :body, images: []) 
     end
 
     def archive_date_params

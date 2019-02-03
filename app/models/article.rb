@@ -1,6 +1,7 @@
 class Article < ApplicationRecord
   include ArticleSearchable
   has_many :comments, dependent: :destroy
+  has_many_attached :images, dependent: :destroy
   validates :title, presence: true
 
 

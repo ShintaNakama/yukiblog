@@ -20,6 +20,11 @@
     <%= form.text_area :body, class: 'form-control', rows: '10' %>
   </div>
  
+  <div class='form-group'>
+    <%= form.label :images %><br>
+    <%= form.file_field :images, multiple: true, class: 'form-control', rows: '10' %>
+  </div>
+
   <nav class="blog-pagination">
     <%= form.submit(class: "btn btn-outline-secondary") %>
   </nav>

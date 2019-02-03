@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   resources :articles do
     resources :comments
 
+    member do
+      delete 'images_destroy'
+    end
+
     collection do
       get 'search'
       get 'archive'
