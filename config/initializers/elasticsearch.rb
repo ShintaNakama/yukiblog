@@ -7,11 +7,11 @@ if Rails.env.production?
   ) do |f|
     f.request :aws_sigv4,
               service: 'es',
-              access_key_id: ACCESS_KEY_ID, # 先ほど設定したIAMユーザーのaccess key id
-              secret_access_key: SECRET_ACCES_KEY, # 先ほど設定したIAMユーザーのsecret access key
+              access_key_id: ENV['AccessKeyId'], # 先ほど設定したIAMユーザーのaccess key id
+              secret_access_key: ENV['SecretAccessKey'], # 先ほど設定したIAMユーザーのsecret access key
               region: 'ap-northeast-1'
     f.adapter :patron
   end
-# else
-#   Elasticsearch::Model.client = Elasticsearch::Client.new({log: true, hosts: { host: 'myapp-elasticsearch'}})
+else
+  Elasticsearch::Model.client = Elasticsearch::Client.new({log: true, hosts: { host: 'myapp-elasticsearch'}})
 end

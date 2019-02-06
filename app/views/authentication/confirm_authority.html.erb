@@ -2,5 +2,7 @@
 <%= form_tag confirm_authority_callback_path, :method => :post, class: "form-inline my-2 my-lg-0" do %>
   <%= email_field_tag :email, params[:email], class: "form-control mr-sm-2" %>
   <%= password_field_tag :password, params[:password], class: "form-control mr-sm-2" %>
-  <%= submit_tag 'submit', :name => nil, class: "btn btn-outline-success my-2 my-sm-0" %>
+  <nav class="blog-pagination" style='margin-top:10px'>
+    <%= submit_tag 'submit', :name => nil, class: "btn btn-outline-success my-2 my-sm-0" %>
+  </nav>
 <% end %>
