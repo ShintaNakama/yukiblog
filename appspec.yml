@@ -1,0 +1,16 @@
+version: 0.0
+os: linux
+files:
+  - source: ./
+    destination: /var/www/rails/
+hooks:
+  # BeforeInstall:
+  #   - location: Scripts/UnzipResourceBundle.sh
+  #   - location: Scripts/UnzipDataBundle.sh
+  # AfterInstall:
+  #   - location: Scripts/RunResourceTests.sh
+  #     timeout: 180
+  ApplicationStart:
+    - location: cd /var/www/rails
+    - location: bundle install --path vendor/bundle
+      timeout: 3600
