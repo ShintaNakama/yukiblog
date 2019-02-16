@@ -11,6 +11,5 @@ hooks:
   #   - location: Scripts/RunResourceTests.sh
   #     timeout: 180
   ApplicationStart:
-    - location: cd /var/www/rails
-    - location: bundle install --path vendor/bundle
+    - location: /var/wwww/rails/app_start.sh
       timeout: 3600
