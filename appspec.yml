@@ -2,14 +2,13 @@ version: 0.0
 os: linux
 files:
   - source: ./
-    destination: /var/www/rails/
+    destination: /var/www/rails/yukiblog
 hooks:
-  # BeforeInstall:
-  #   - location: Scripts/UnzipResourceBundle.sh
-  #   - location: Scripts/UnzipDataBundle.sh
+  BeforeInstall:
+    - location: /scripts/before-deploy.sh
   # AfterInstall:
   #   - location: Scripts/RunResourceTests.sh
   #     timeout: 180
   ApplicationStart:
-    - location: /var/wwww/rails/app_start.sh
+    - location: /scripts/app-start.sh
       timeout: 3600
