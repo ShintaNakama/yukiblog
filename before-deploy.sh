@@ -3,7 +3,7 @@ if [ -e /var/www/rails/yukiblog ]; then
   cd /var/www/rails/yukiblog
   sudo rm -rf *
 else
-  sudo mkdir /var/www/rails/yukiblog
+  sudo mkdir -p /var/www/rails/yukiblog
 fi
 
 
