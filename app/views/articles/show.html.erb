@@ -23,6 +23,8 @@
 
 <%= link_to 'index', articles_path %>
 
-<%= link_to 'Edit', edit_article_path(@article) %>
-<%= link_to 'delete', article_path(@article), method: :delete, data: { confirm: 'Are you sure?' } %>
-<%= link_to 'image_delete', images_destroy_article_path(@article), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% if session[:admin] %>
+  <%= link_to 'Edit', edit_article_path(@article) %>
+  <%= link_to 'delete', article_path(@article), method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to 'image_delete', images_destroy_article_path(@article), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
