@@ -5,10 +5,10 @@ files:
     destination: /var/www/rails/yukiblog
 hooks:
   BeforeInstall:
-    - location: before-deploy.sh
+    - location: ./before-deploy.sh
   # AfterInstall:
   #   - location: Scripts/RunResourceTests.sh
   #     timeout: 180
   ApplicationStart:
-    - location: app-start.sh
+    - location: ./app-start.sh
       timeout: 3600
