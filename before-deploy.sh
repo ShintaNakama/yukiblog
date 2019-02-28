@@ -1,6 +1,7 @@
 #!/bin/sh
 if [ -e /var/www/rails/yukiblog ]; then
-  sudo rm -rf /var/www/rails/yukiblog/*
+  # sudo rm -rf /var/www/rails/yukiblog/*
+  echo 'OK'
 else
   sudo mkdir -p /var/www/rails/yukiblog
 fi
