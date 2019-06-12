@@ -27,10 +27,10 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                <% if session[:admin] %>
-                  <%= link_to 'logout', logout_path, class: "nav-link" %>
+                <% if current_user %>
+                  <%= link_to 'logout', logout_path, method: :delete, class: "nav-link" %>
                 <% else %>
-                  <%= link_to 'login', confirm_authority_path, class: "nav-link" %>
+                  <%= link_to 'login', login_path, class: "nav-link" %>
                 <% end %>
               </li>
               <% if session[:admin] %>

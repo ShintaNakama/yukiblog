@@ -1,0 +1,16 @@
+<h1>login</h1>
+<div class="form-inline my-2 my-lg-0">
+  <%= form_with scope: :session, local: true do |f| %>
+    <div>
+      <%= f.label :email, 'メールアドレス' %>
+      <%= f.text_field :email, class: 'form-control mr-sm-1' %>
+    </div>
+    <div>
+      <%= f.label :password, 'パスワード' %>
+      <%= f.password_field :password, class: 'form-control mr-sm-1' %>
+    </div>
+    <div style='margin-top:10px;'>
+      <%= f.submit 'ログインする', class: "btn btn-outline-success my-2 my-sm-0" %>
+    </div>
+  <% end %>
+</div>

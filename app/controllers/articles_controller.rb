@@ -91,11 +91,12 @@ class ArticlesController < ApplicationController
 
     def confirm_admin_session
       # session[:admin].present? ? true : confirm_permission
-      if session[:admin].present?
-        true
-      else
-        redirect_to confirm_authority_path
-      end
+      # if session[:admin].present?
+      #   true
+      # else
+      #   redirect_to confirm_authority_path
+      # end
+      redirect_to confirm_authority_path unless current_user.present?
     end
 
 end
