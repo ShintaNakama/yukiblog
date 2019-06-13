@@ -22,10 +22,10 @@ set :deploy_to, "/var/www/yukiblog"
 # set :pty, true
 
 # Default value for :linked_files is []
-append :linked_files, "config/database.yml", ".env"
+append :linked_files, "config/database.yml", "config/master.key", ".env"
 
 # Default value for linked_dirs is []
-append :linked_dirs, "log", "tmp"
+append :linked_dirs, "log", "tmp", ".bundle"
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -38,3 +38,6 @@ set :keep_releases, 1
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
+
+# ruby_version
+set :rbenv_ruby, '2.5.1'
