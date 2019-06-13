@@ -25,7 +25,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
@@ -53,9 +53,22 @@ gem 'aws-sdk', '~> 3'
 gem 'faraday_middleware-aws-sigv4'
 gem 'patron'
 
+# markdown
+gem 'charlock_holmes'
+gem 'rugged'
+gem 'qiita-markdown'
+gem 'github-linguist'
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # capistrano
+  gem "capistrano", "~> 3.11", require: false 
+  gem "capistrano-rails", "~> 1.4", require: false
+  gem 'capistrano-bundler', '~> 1.5'
+  gem 'capistrano-rbenv', '~> 2.1'
+  gem 'capistrano3-puma'
 end
 
 group :development do

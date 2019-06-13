@@ -16,8 +16,18 @@
   </div>
  
   <div class='form-group'>
-    <%= form.label :body %><br>
-    <%= form.text_area :body, class: 'form-control', rows: '10' %>
+    <div id="editor">
+      <%= form.label :body %><br>
+      <!--<%= form.text_area :body, class: 'form-control', rows: '10' %>-->
+      <textarea name="article[body]" id="n" class="form-control" rows="10" v-model='input' debounce='50'></textarea>
+      <br/>
+      <p>プレビュー</p>
+      <div style="margin-top:10px;border:solid 1px gray;">
+        <div class="di_inline_t preview">
+          <div v-html='input | marked' style: :"width: 650px;""></div>
+        </div>
+      </div>
+    </div>
   </div>
  
   <div class='form-group'>
@@ -29,3 +39,17 @@
     <%= form.submit(class: "btn btn-outline-secondary") %>
   </nav>
 <% end %>
+
+<script type="text/javascript">
+ window.onload = function() {
+ new Vue({
+ el: '#editor',
+ data: {
+ input: '<%== j @article.body %>',
+ },
+ filters: {
+ marked: marked,
+ },
+ });
+ };
+</script>

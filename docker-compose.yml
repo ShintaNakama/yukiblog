@@ -10,37 +10,37 @@ services:
       MYSQL_DATABASE: "yukiblog_development"
       MYSQL_ROOT_PASSWORD: "12345678"
     command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
-    command: mysqld --sql_mode=NO_ENGINE_SUBSTITUTION
-  elasticsearch:
-    container_name: yukiblog-elasticsearch
-    build:
-      context: .
-      dockerfile: es.Dockerfile
-    environment:
-      - discovery.type=single-node
-      - xpack.security.enabled=false
-    volumes:
-      - elasticsearch-data:/usr/share/elasticsearch/data
-    ports:
-      - 9200:9200
-      - 9300:9300
-  kibana:
-    container_name: yukiblog-kibana
-    build:
-      context: .
-      dockerfile: es.Dockerfile
-    environment:
-      - xpack.security.enabled=false
-    ports:
-      - 5601:5601
+    # command: mysqld --sql_mode=NO_ENGINE_SUBSTITUTION
+  # elasticsearch:
+  #   container_name: yukiblog-elasticsearch
+  #   build:
+  #     context: .
+  #     dockerfile: es.Dockerfile
+  #   environment:
+  #     - discovery.type=single-node
+  #     - xpack.security.enabled=false
+  #   volumes:
+  #     - elasticsearch-data:/usr/share/elasticsearch/data
+  #   ports:
+  #     - 9200:9200
+  #     - 9300:9300
+  # kibana:
+  #   container_name: yukiblog-kibana
+  #   build:
+  #     context: .
+  #     dockerfile: es.Dockerfile
+  #   environment:
+  #     - xpack.security.enabled=false
+  #   ports:
+  #     - 5601:5601
   web:
     tty: true
     stdin_open: true
     build:
       context: .
       dockerfile: Dockerfile
-    environment:
-      ELASTICSEARCH_URL: http://elasticsearch:9200
+    # environment:
+    #   ELASTICSEARCH_URL: http://elasticsearch:9200
     command: /bin/sh -c "rm -f /yukiblog/tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     depends_on:
       - mysql
@@ -49,13 +49,13 @@ services:
       - vendor_bundle:/yukiblog/vendor/bundle
     ports:
       - "3000:3000"
-    links:
-      - elasticsearch
+    # links:
+    #   - elasticsearch
 
 volumes:
   mysql_data:
     driver: local
   vendor_bundle:
     driver: local
-  elasticsearch-data:
-        driver: local
+  # elasticsearch-data:
+  #       driver: local
