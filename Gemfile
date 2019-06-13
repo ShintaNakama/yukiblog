@@ -59,9 +59,16 @@ gem 'rugged'
 gem 'qiita-markdown'
 gem 'github-linguist'
 
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # capistrano
+  gem "capistrano", "~> 3.11", require: false 
+  gem "capistrano-rails", "~> 1.4", require: false
+  gem 'capistrano-bundler', '~> 1.5'
+  gem 'capistrano-rbenv', '~> 2.1'
+  gem 'capistrano3-puma'
 end
 
 group :development do
