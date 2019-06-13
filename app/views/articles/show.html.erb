@@ -10,7 +10,7 @@
     <% end %>
   <% end %>
   <br/>
-  <p><%= @article.body.html_safe %></p>
+  <%= qiita_markdown(@article.body) %>
 </div>
 
 <hr>
