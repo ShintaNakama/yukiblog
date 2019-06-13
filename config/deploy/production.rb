@@ -43,7 +43,7 @@ server "example.com", user: "deploy", roles: %w{app web}, other_property: :other
 # --------------
  set :ssh_options, {
    keys: %w(~/.ssh/nakama_github_key_rsa),
-   forward_agent: false,
+   forward_agent: true,
    auth_methods: %w(publickey)
  }
 #
