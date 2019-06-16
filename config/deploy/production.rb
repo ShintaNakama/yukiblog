@@ -4,7 +4,9 @@
 # You can define all roles on a single server, or split them:
 
 # server "example.com", user: "deploy", roles: %w{app db web}, my_property: :my_value
-server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
+
+server "35.243.71.228 ", user: "nakamashinta", roles: %w{app web}, other_property: :other_value
+
 # server "db.example.com", user: "deploy", roles: %w{db}
 
 
@@ -42,8 +44,8 @@ server "example.com", user: "deploy", roles: %w{app web}, other_property: :other
 # Global options
 # --------------
  set :ssh_options, {
-   keys: %w(~/.ssh/nakama_github_key_rsa),
-   forward_agent: false,
+   keys: %w(~/.ssh/google_compute_engine),
+   forward_agent: true,
    auth_methods: %w(publickey)
  }
 #
