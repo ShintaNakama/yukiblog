@@ -4,7 +4,9 @@
 # You can define all roles on a single server, or split them:
 
 # server "example.com", user: "deploy", roles: %w{app db web}, my_property: :my_value
+
 server "35.243.71.228 ", user: "nakamashinta", roles: %w{app web}, other_property: :other_value
+
 # server "db.example.com", user: "deploy", roles: %w{db}
 
 
