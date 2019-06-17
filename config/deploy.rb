@@ -42,5 +42,5 @@ set :keep_releases, 1
 
 
 # ruby_version
-set :rbenv_ruby, '2.5.1'
+set :rbenv_ruby, '2.5.0'
 
