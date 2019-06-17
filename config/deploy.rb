@@ -23,7 +23,7 @@ set :deploy_to, "/var/www/yukiblog"
 
 # Default value for :linked_files is []
 
-append :linked_files, "config/master.key", ".env"
+# append :linked_files, "config/master.key", ".env"
 
 # Default value for linked_dirs is []
 append :linked_dirs, "log", "tmp", ".bundle"
