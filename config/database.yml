@@ -51,8 +51,7 @@ test:
 production:
   <<: *default
   database: yukiblog_production
-  #username: yukiblog
   username: root
   password: <%= ENV['YUKIBLOG_DATABASE_PASSWORD'] %>
-  # host: 'yukiblogmysqldb.cwdi1rve53lh.ap-northeast-1.rds.amazonaws.com'
-  soket: /cloudsql/yukiblog:asia-northeast1:yukiblog-db-master
+  host: 10.45.128.3 
+  # soket: /cloudsql/yukiblog:asia-northeast1:yukiblog-db-master
