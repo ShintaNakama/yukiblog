@@ -68,9 +68,9 @@ group :development, :test do
   # capistrano
   gem "capistrano", "~> 3.11", require: false 
   gem "capistrano-rails", "~> 1.4", require: false
-  gem 'capistrano-bundler', '~> 1.5'
-  gem 'capistrano-rbenv', '~> 2.1'
-  gem 'capistrano3-puma'
+  gem 'capistrano-bundler', '~> 1.5', require: false
+  gem 'capistrano-rbenv', '~> 2.1', require: false
+  gem 'capistrano3-puma', require: false
 end
 
 group :development do

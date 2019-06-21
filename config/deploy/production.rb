@@ -2,7 +2,12 @@
 # ======================
 # Defines a single server with a list of roles and multiple properties.
 # You can define all roles on a single server, or split them:
-
+set :stage, :production
+set :rails_env, 'production'
+ 
+set :branch, ENV['BRANCH_NAME'] || 'master'
+ 
+set :migration_role, 'db'
 # server "example.com", user: "deploy", roles: %w{app db web}, my_property: :my_value
 
 server "35.243.71.228", user: "nakamashinta", roles: %w{app web}, other_property: :other_value
