@@ -27,7 +27,7 @@ set :user, "nakamashinta"
 # # Default value for :linked_files is []
 
 # # append :linked_files, "config/master.key"
-set :linked_files, fetch(:linked_files, []).push("config/master.key") 
+# set :linked_files, fetch(:linked_files, []).push("config/master.key") 
 
 # # Default value for linked_dirs is []
 # # append :linked_dirs, "log", "tmp", ".bundle"
