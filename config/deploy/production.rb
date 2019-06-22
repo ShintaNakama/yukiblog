@@ -14,7 +14,7 @@ set :branch, 'master'
 # server "35.243.71.228", user: "nakamashinta", roles: %w{app web}, other_property: :other_value
 server "35.243.71.228", user: "nakamashinta", roles: %w{app web}
 
-server "10.45.128.3 ", user: "root", roles: %w{db}
+# server "10.45.128.3 ", user: "root", roles: %w{db}
 
 
 
