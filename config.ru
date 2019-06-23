@@ -2,4 +2,7 @@
 
 require_relative 'config/environment'
 
-run Rails.application
+# run Rails.application
+use Rails::Rack::LogTailer
+use Rails::Rack::Static
+run ActionController::Dispatcher.new
