@@ -64,8 +64,8 @@ set :linked_files, fetch(:linked_files, []).push("config/master.key")
 
 # bundle installの並列実行数
 set :bundle_jobs, 4
-set :puma_threads,    [4, 16]
-set :puma_workers,    0
+# set :puma_threads,    [4, 16]
+# set :puma_workers,    0
 set :pty,             true
 set :use_sudo,        false
 set :stage,           :production
