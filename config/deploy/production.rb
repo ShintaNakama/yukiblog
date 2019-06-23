@@ -2,8 +2,8 @@
 # ======================
 # Defines a single server with a list of roles and multiple properties.
 # You can define all roles on a single server, or split them:
-# set :stage, :production
-# set :rails_env, 'production'
+set :stage, :production
+set :rails_env, 'production'
  
 # set :branch, ENV['BRANCH_NAME'] || 'master'
 set :branch, 'master'
