@@ -52,6 +52,8 @@ production:
   <<: *default
   database: yukiblog_production
   username: root
-  password: <%= ENV['YUKIBLOG_DATABASE_PASSWORD'] %>
+  # password: <%= ENV['YUKIBLOG_DATABASE_PASSWORD'] %>
+  password: <%= Rails.application.credentials.YUKIBLOG_DATABASE_PASSWORD %>
   host: 10.45.128.3 
   # soket: /cloudsql/yukiblog:asia-northeast1:yukiblog-db-master
+
