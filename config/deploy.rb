@@ -106,29 +106,41 @@ set :linked_dirs, fetch(:linked_dirs, []).push(
 #   before :start, :make_dirs
 # end
  
-# namespace :deploy do
-#   desc 'Make sure local git is in sync with remote.'
-#   task :check_revision do
-#     on roles(:app) do
-#       unless `git rev-parse HEAD` == `git rev-parse origin/master`
-#       end
-#     end
-#   end
+namespace :deploy do
+  desc 'Make sure local git is in sync with remote.'
+  task :check_revision do
+    on roles(:app) do
+      unless `git rev-parse HEAD` == `git rev-parse origin/master`
+      end
+    end
+  end
+  
+  # 上記linked_filesで使用するファイルをアップロードするタスク
+  desc 'Upload master.key'
+  task :upload do
+    on roles(:app) do |host|
+      if test "[ ! -d #{shared_path}/config ]"
+        execute "mkdir -p #{shared_path}/config"
+      end
+      upload!('config/master.key', "#{shared_path}/config/master.key")
+    end
+  end
  
-#   desc 'Initial Deploy'
-#   task :initial do
-#     on roles(:app) do
-#       before 'deploy:restart', 'puma:start'
-#       invoke 'deploy'
-#     end
-#   end
+  desc 'Initial Deploy'
+  task :initial do
+    on roles(:app) do
+      before 'deploy:restart', 'puma:start'
+      invoke 'deploy'
+    end
+  end
  
-#   desc 'Restart application'
-#   task :restart do
-#     on roles(:app), in: :sequence, wait: 5 do
-#       invoke 'puma:restart'
-#     end
-#   end
+  desc 'Restart application'
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      invoke 'puma:restart'
+    end
+  end
+end
  
   # desc 'reload the database with seed data'
   # task :seed do

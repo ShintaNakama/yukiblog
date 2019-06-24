@@ -42,7 +42,7 @@ server "35.243.71.228", user: "nakamashinta", roles: %w{web app}
 
 # role :app, %w{deploy@example.com}, my_property: :my_value
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
-# role :db,  %w{deploy@example.com}
+# role :db,  %w{root@10.45.128.3}
 
 
 
