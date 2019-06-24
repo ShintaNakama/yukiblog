@@ -71,6 +71,7 @@ group :development, :test do
   gem 'capistrano-bundler', '~> 1.5', require: false
   gem 'capistrano-rbenv', '~> 2.1', require: false
   gem 'capistrano3-puma', require: false
+  gem 'puma_worker_killer'
 end
 
 group :development do

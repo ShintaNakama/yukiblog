@@ -7,12 +7,26 @@ set :rails_env, 'production'
  
 # set :branch, ENV['BRANCH_NAME'] || 'master'
 set :branch, 'master'
+# gitのbranchチェック設定
+set :enable_git_confirmation, true
  
 # set :migration_role, 'db'
 # server "example.com", user: "deploy", roles: %w{app db web}, my_property: :my_value
 
+# migrate設定
+set :migration_role, %w{db}
+set :conditionally_migrate, true
+set :migration_environments, ['production']
+
+# puma設定
+set :puma_threads, [4, 16] # DBプール数に合わせる
+set :puma_workers, 2 # CPUコア数〜1.5倍を基本と考える
+set :puma_worker_killer_ram, 6144 # 搭載メモリの80%程度をよしなに設定
+set :puma_daemonize, true # デーモン化を有効にしておく
+set :puma_control_app, true
+
 # server "35.243.71.228", user: "nakamashinta", roles: %w{app web}, other_property: :other_value
-server "35.243.71.228", user: "nakamashinta", roles: %w{app web}
+server "35.243.71.228", user: "nakamashinta", roles: %w{web app}
 
 # server "10.45.128.3 ", user: "root", roles: %w{db}
 
