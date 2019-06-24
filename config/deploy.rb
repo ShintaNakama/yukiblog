@@ -3,7 +3,7 @@ lock "~> 3.11.0"
 
 set :application, "yukiblog"
 set :repo_url, "git@github.com:ShintaNakama/yukiblog.git"
-set :user, "nakamashinta"
+# set :user, "nakamashinta"
 
 # # Default branch is :master
 # # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -78,18 +78,12 @@ set :stage,           :production
 # set :puma_preload_app, true
 # set :puma_worker_timeout, nil
 # set :puma_init_active_record, true
-set :default_env, {
-  'PATH' => "/usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH",
-  'PKG_CONFIG_PATH' => '$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig'
-}
 set :rbenv_type, :system
 set :rbenv_path, '/usr/local/rbenv'
 # set :rbenv_path, '~/.rbenv/bin/rbenv'
 set :rbenv_ruby, File.read('.ruby-version').strip
 set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
 set :rbenv_map_bins, %w[rake gem bundle ruby rails]
-set :rbenv_roles, :all # default value
-set :bundle_flags, "--deployment --binstubs"
 
 set :linked_dirs, fetch(:linked_dirs, []).push(
   'log',
@@ -151,65 +145,6 @@ set :linked_dirs, fetch(:linked_dirs, []).push(
   # before :starting,     :check_revision
   # after  :finishing,    :compile_assets
   # after  :finishing,    :cleanup
-  before 'deploy:starting'
-  ### gitのbranchチェック
-# enable_git_confirmationがtrueの場合に実行される
-namespace :git do
-  desc 'git confirmation'
-  task :confirmation do
-    on release_roles :all do
-      if fetch(:enable_git_confirmation)
-        # branchがmasterになっているかどうかのチェック
-        current_branch = `git rev-parse --abbrev-ref HEAD`.chomp
-        correct_branch = fetch(:correct_branch) || 'master'
-        unless current_branch == correct_branch
-          error "git: current branch is not '#{correct_branch}' but '#{current_branch}'."
-          exit 1
-        end
-        # gitにdiffがないかどうかのチェック
-        git_diff = `git diff`
-        unless git_diff.empty?
-          error "git: current source has any diff. \n#{git_diff}"
-          exit 1
-        end
-      else
-        info '[git:confirmation] Skip git confirmation'
-      end
-    end
-  end
-end
-before 'deploy', 'git:confirmation'
-
-# 指定された環境でmigrateを実行するタスク
-namespace :deploy do
-  desc 'Runs rake db:migrate if migrations are set'
-  task :migrate do
-    on primary fetch(:migration_role) do
-      conditionally_migrate = fetch(:conditionally_migrate)
-      info '[deploy:migrate] Checking changes in /db/migrate' if conditionally_migrate
-      if conditionally_migrate && test("diff -q #{release_path}/db/migrate #{current_path}/db/migrate")
-        info '[deploy:migrate] Skip `deploy:migrate` (nothing changed in db/migrate)'
-      else
-        info '[deploy:migrate] Run `rake db:migrate`'
-        invoke :'deploy:migrating'
-      end
-    end
-  end
-  desc 'Runs rake db:migrate'
-  task :migrating do
-    envs = fetch(:migration_environments)
-    envs.each do |env|
-      on primary fetch(:migration_role) do
-        within release_path do
-          with rails_env: env do
-            execute :rake, "db:migrate"
-          end
-        end
-      end
-    end
-  end
-  after 'deploy:updated', 'deploy:migrate'
-end
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
 

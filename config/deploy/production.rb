@@ -8,15 +8,15 @@ set :rails_env, 'production'
 # set :branch, ENV['BRANCH_NAME'] || 'master'
 set :branch, 'master'
 # gitのbranchチェック設定
-set :enable_git_confirmation, true
+# set :enable_git_confirmation, true
  
 # set :migration_role, 'db'
 # server "example.com", user: "deploy", roles: %w{app db web}, my_property: :my_value
 
 # migrate設定
-set :migration_role, %w{db}
-set :conditionally_migrate, true
-set :migration_environments, ['production']
+# set :migration_role, %w{db}
+# set :conditionally_migrate, true
+# set :migration_environments, ['production']
 
 # puma設定
 set :puma_threads, [4, 16] # DBプール数に合わせる
