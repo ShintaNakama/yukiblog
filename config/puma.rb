@@ -4,8 +4,8 @@
 # the maximum value specified for Puma. Default is set to 5 threads for minimum
 # and maximum; this matches the default thread size of Active Record.
 #
-# threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }
-# threads threads_count, threads_count
+threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }
+threads threads_count, threads_count
 
 # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
 #
@@ -13,7 +13,7 @@
 
 # Specifies the `environment` that Puma will run in.
 #
-# environment ENV.fetch("RAILS_ENV") { "production" }
+environment ENV.fetch("RAILS_ENV") { "production" }
 
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked webserver processes. If using threads and workers together
@@ -21,7 +21,7 @@
 # Workers do not work on JRuby or Windows (both of which do not support
 # processes).
 #
-# workers ENV.fetch("WEB_CONCURRENCY") { 2 }
+workers ENV.fetch("WEB_CONCURRENCY") { 2 }
 
 # Use the `preload_app!` method when specifying a `workers` number.
 # This directive tells Puma to first boot the application and load code
@@ -34,10 +34,6 @@
 # plugin :tmp_restart
 
 # Change to match your CPU core count
-workers 2
-
-# Min and Max threads per worker
-threads 1, 6
 
 daemonize true
 
@@ -52,7 +48,7 @@ environment rails_env
 bind "unix://#{shared_dir}/tmp/sockets/puma.sock"
 
 # Logging
-stdout_redirect "#{shared_dir}/log/puma.stdout.log", "#{shared_dir}/log/puma.stderr.log", true
+stdout_redirect "#{shared_dir}/current/log/puma.stdout.log", "#{shared_dir}/current/log/puma.stderr.log", true
 
 # Set master PID and state locations
 pidfile "#{shared_dir}/tmp/pids/puma.pid"

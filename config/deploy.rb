@@ -38,12 +38,6 @@ set :linked_files, fetch(:linked_files, []).push("config/master.key")
 
 # # Default value for local_user is ENV['USER']
 # # set :local_user, -> { `git config user.name`.chomp }
-# # rbenvをシステムにインストールしたか? or ユーザーローカルにインストールしたか?
-# # set :rbenv_type, :user # :system or :user
-# # set :rbenv_ruby, File.read('.ruby-version').strip
-# # set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
-# # set :rbenv_map_bins, %w{rake gem bundle ruby rails}
-# # set :rbenv_roles, :all # default value
 
 # # pumaの設定
 # set :stage,           :production

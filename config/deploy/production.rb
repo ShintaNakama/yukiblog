@@ -19,8 +19,6 @@ set :branch, 'master'
 # set :migration_environments, ['production']
 
 # puma設定
-set :puma_threads, [4, 16] # DBプール数に合わせる
-set :puma_workers, 2 # CPUコア数〜1.5倍を基本と考える
 set :puma_worker_killer_ram, 6144 # 搭載メモリの80%程度をよしなに設定
 set :puma_daemonize, true # デーモン化を有効にしておく
 set :puma_control_app, true
