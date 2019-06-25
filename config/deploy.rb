@@ -31,7 +31,17 @@ set :linked_files, fetch(:linked_files, []).push("config/master.key")
 
 # # Default value for linked_dirs is []
 # # append :linked_dirs, "log", "tmp", ".bundle"
-set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle}
+# set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle}
+set :linked_dirs, fetch(:linked_dirs, []).push(
+  'log',
+  'tmp/pids',
+  'tmp/cache',
+  'tmp/sockets',
+  'vendor/bundle',
+  'public/system',
+  'public/assets',
+  'public/uploads'
+) 
 
 # # Default value for default_env is {}
 # # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -64,11 +74,11 @@ set :keep_releases, 1
 set :stage,           :production
 # set :deploy_via,      :remote_cache
 # set :deploy_to,       'SERVER_PATH'
-set :puma_bind,       "unix://#{shared_path}/tmp/sockets/puma.sock"
-set :puma_state,      "#{shared_path}/tmp/pids/puma.state"
-set :puma_pid,        "#{shared_path}/tmp/pids/puma.pid"
-set :puma_access_log, "#{release_path}/log/puma.access.log"
-set :puma_error_log,  "#{release_path}/log/puma.error.log"
+# set :puma_bind,       "unix://#{shared_path}/tmp/sockets/puma.sock"
+# set :puma_state,      "#{shared_path}/tmp/pids/puma.state"
+# set :puma_pid,        "#{shared_path}/tmp/pids/puma.pid"
+# set :puma_access_log, "#{release_path}/log/puma.access.log"
+# set :puma_error_log,  "#{release_path}/log/puma.error.log"
 # set :puma_preload_app, true
 # set :puma_worker_timeout, nil
 # set :puma_init_active_record, true
@@ -78,17 +88,6 @@ set :rbenv_path, '/usr/local/rbenv'
 set :rbenv_ruby, File.read('.ruby-version').strip
 set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
 set :rbenv_map_bins, %w[rake gem bundle ruby rails]
-
-# set :linked_dirs, fetch(:linked_dirs, []).push(
-#   'log',
-#   'tmp/pids',
-#   'tmp/cache',
-#   'tmp/sockets',
-#   'vendor/bundle',
-#   'public/system',
-#   'public/assets',
-#   'public/uploads'
-# ) 
 # namespace :puma do
 #   desc 'Create Directories for Puma Pids and Socket'
 #   task :make_dirs do
