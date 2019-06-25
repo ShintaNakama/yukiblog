@@ -60,3 +60,14 @@ on_worker_boot do
   ActiveRecord::Base.connection.disconnect! rescue ActiveRecord::ConnectionNotEstablished
   ActiveRecord::Base.establish_connection(YAML.load_file("#{app_dir}/current/config/database.yml")[rails_env])
 end
+
+before_fork do
+  PumaWorkerKiller.config do |config|
+    config.ram           = 1024 
+    config.frequency     = 5    
+    config.percent_usage = 0.65
+    config.rolling_restart_frequency = 12 * 3600 
+    config.reaper_status_logs = true
+  end
+  PumaWorkerKiller.start
+end
