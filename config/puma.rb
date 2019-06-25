@@ -54,7 +54,7 @@ stdout_redirect "#{shared_dir}/current/log/puma.stdout.log", "#{shared_dir}/curr
 # Set master PID and state locations
 pidfile "#{shared_dir}/tmp/pids/puma.pid"
 state_path "#{shared_dir}/tmp/pids/puma.state"
-activate_control_app
+# activate_control_app
 
 on_worker_boot do
   require "active_record"
