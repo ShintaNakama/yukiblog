@@ -71,7 +71,7 @@ set :keep_releases, 1
 # set :puma_threads,    [4, 16]
 # set :puma_workers,    0
 # set :use_sudo,        false
-set :stage,           :production
+# set :stage,           :production
 # set :deploy_via,      :remote_cache
 # set :deploy_to,       'SERVER_PATH'
 # set :puma_bind,       "unix://#{shared_path}/tmp/sockets/puma.sock"

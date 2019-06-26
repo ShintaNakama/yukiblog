@@ -19,9 +19,9 @@ set :branch, 'master'
 # set :migration_environments, ['production']
 
 # puma設定
-set :puma_worker_killer_ram, 6144 # 搭載メモリの80%程度をよしなに設定
-set :puma_daemonize, true # デーモン化を有効にしておく
-set :puma_control_app, true
+# set :puma_worker_killer_ram, 6144 # 搭載メモリの80%程度をよしなに設定
+# set :puma_daemonize, true # デーモン化を有効にしておく
+# set :puma_control_app, true
 
 # server "35.243.71.228", user: "nakamashinta", roles: %w{app web}, other_property: :other_value
 server "35.243.71.228", user: "nakamashinta", roles: %w{web app}
