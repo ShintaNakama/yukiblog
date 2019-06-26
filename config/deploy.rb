@@ -112,10 +112,10 @@ namespace :deploy do
   desc 'Upload master.key'
   task :upload do
     on roles(:app) do |host|
-      if test "[ ! -d /var/www/yukiblog/shard/config ]"
-        execute "mkdir -p /var/www/yukiblog/shard/config"
+      if test "[ ! -d /var/www/yukiblog/shared/config ]"
+        execute "mkdir -p /var/www/yukiblog/shared/config"
       end
-      upload!('config/master.key', "/var/www/yukiblog/shard//config/master.key")
+      upload!('config/master.key', "/var/www/yukiblog/shared/config/master.key")
     end
   end
  
