@@ -42,7 +42,6 @@ class ArticlesController < ApplicationController
       #   format.html { render :new }
       #   format.json { render json: @article.errors, status: :unprocessable_entity }
       # end
-      @article.title = nil
       begin
         @article.save!
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
