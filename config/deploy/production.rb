@@ -24,8 +24,10 @@ set :branch, 'master'
 # set :puma_control_app, true
 
 # server "35.243.71.228", user: "nakamashinta", roles: %w{app web}, other_property: :other_value
+server "35.243.71.228", user: "nakamashinta", roles: %w{web app}
+server "35.221.120.227", user: "nakamashinta", roles: %w{web app}
 server "34.83.95.15", user: "nakamashinta", roles: %w{web app}
-server "35.238.123.60", user: "nakamashinta", roles: %w{web app}
+server "35.199.172.57", user: "nakamashinta", roles: %w{web app}
 
 # server "10.45.128.3 ", user: "root", roles: %w{db}
 
