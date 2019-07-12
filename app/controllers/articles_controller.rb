@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   before_action :confirm_admin_session, only: [:new, :create, :edit, :update, :destroy, :images_destroy]
   before_action :set_article, only: [:show, :edit, :update, :destroy, :images_destroy]
 
-    PER = 5
+  PER = 5
   def index
     # @articles = Article.all.reverse
     @articles = Article.order('id DESC').page(params[:page]).per(PER)
