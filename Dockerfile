@@ -1,6 +1,7 @@
-FROM ruby:2.5.1
+FROM ruby:2.6.5
 ENV LANG C.UTF-8
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs cmake
+ENV TZ='Asia/Tokyo'
+RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs cmake vim
 RUN gem install bundler
 WORKDIR /tmp
 ADD Gemfile Gemfile
