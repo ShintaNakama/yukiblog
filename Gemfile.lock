@@ -935,7 +935,7 @@ GEM
       pygments.rb
       rugged (>= 0.21.1b2)
       sanitize
-    rack (2.0.6)
+    rack (2.0.8)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (5.2.2)
